@@ -1,0 +1,43 @@
+#include <iostream>
+
+using namespace std;
+
+
+
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
+        if(dividend==divisor)return 1;
+        bool isNeg=(dividend<0==divisor<0);
+        long a=abs((long)dividend);
+        long b=abs((long)divisor);
+        long ans=0;
+        while(a>=b){
+            int q=0;
+            while(a>(b<<(q+1)))q++;
+            ans+=(1<<q);
+            a-=(b<<q);
+        }
+        if(!isNeg)ans=-ans;
+        if(ans>INT_MAX)return INT_MAX;
+        if(ans<INT_MIN)return INT_MIN;
+        return (int)ans;
+    }
+};
+
+
+int main() {
+
+
+    int dividend =-2147483648;
+    int divisor = 1;
+
+
+
+    Solution ans;
+
+    int answer = ans.divide(dividend, divisor);
+
+    cout << "quotient == " << answer <<endl;
+    return 0;
+}
